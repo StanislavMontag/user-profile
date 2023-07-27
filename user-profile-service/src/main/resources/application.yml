@@ -1,0 +1,27 @@
+spring:
+  webflux:
+    base-path: /api/v1
+  datasource:
+    url: jdbc:postgresql://localhost:5432/iprody
+    username: iprody
+    password: secret
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yml
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: liquibase, health, prometheus
+  endpoint:
+    health:
+      show-details: always
+springdoc:
+  show-actuator: true
+  swagger-ui:
+    url: openapi.json
